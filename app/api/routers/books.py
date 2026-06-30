@@ -34,8 +34,6 @@ def update_book(book_id: int, book_update: BookUpdate):
         if book["id"] == book_id:
             update_data = (
                 book_update.model_dump(exclude_unset=True)
-                if hasattr(book_update, "model_dump")
-                else book_update.dict(exclude_unset=True)
             )
             for key, value in update_data.items():
                 if value is not None:
