@@ -3,4 +3,11 @@ fake_db = [
     {"id": 2, "title": "Clean Code", "author": "Robert C. Martin"},
 ]
 
-__all__ = ["fake_db"]
+
+def get_db():
+        """Yield the data store. Swap this body for a real DB session later —
+    every route that depends on get_db() will not need to change."""
+        try:
+            yield fake_db
+        finally:
+            pass
