@@ -10,8 +10,7 @@ class Pagination:
 
 
 def get_book_or_404(book_id: int, db=Depends(get_db)):
-    for book in db:
-        if book["id"] == book_id:
-            return book
-
-    raise HTTPException(status_code=404, detail="Book not found")
+    book = db.find_one({"id": book_id})
+    if book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book
